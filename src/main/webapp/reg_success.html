@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+
+		<style>
+			ul {
+				font-size: 14px;
+				color: #8f8f94;
+			}
+			.mui-btn {
+				padding: 10px;
+			}
+			#success_info {
+				font-size: 20px;
+			    text-align: center;
+			    color: red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="padding-right: 15px;">
+			<h1 class="mui-title">注册成功</h1>
+			<button id='setting' class=" mui-pull-right mui-btn-link">设置</button>
+		</header>
+		<div class="mui-content">
+			<div class="mui-content-padded">
+					<p id="success_info">您好 <span id='account'></span>，恭喜您！您已成功注册。</p>
+					<ul>
+						<li>您可以在设置中修改您的个人资料。</li>
+						<li>页面将在<span id="refresh_time">5</span>s后进行跳转，开始挑选您中意的商品吧。</li>
+					</ul>
+				<button id='go_shopping' class="mui-btn mui-btn-block mui-btn-green">手动跳转</button>
+                <button id='logout' class="mui-btn mui-btn-red mui-btn-block">注销登录</button>
+			</div>
+		</div>
+		<script src="js/3rdparty/jquery/dist/jquery.min.js"></script>
+		<script src="js/ibuy/commons.js"></script>
+		<script>
+			(function() {
+				var time = 5;
+				function go_shopping() {
+					$('#refresh_time').html(time);
+					if(time > 0){
+						setTimeout(go_shopping, 1000);
+						time--;
+					} else {
+						location.href = 'main.html?_=' + new Date().getTime();
+					}
+				}
+				go_shopping();
+			})();
+			$('#go_shopping').on('click', function(){
+				location.href = 'main.html?_=' + new Date().getTime();
+			});
+		</script>
+	</body>
+
+</html>
