@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>上传商品</title>
+<link rel="stylesheet" type="text/css" media="screen" href="js/3rdparty/jquery-ui/themes/base/jquery-ui.min.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="js/3rdparty/jqGrid_5.1.0/css/ui.jqgrid.css" />
+<!-- <link rel="stylesheet" type="text/css" media="screen" href="js/3rdparty/jqGrid_5.1.0/css/ui.jqgrid-bootstrap.css" /> -->
+<!-- <link rel="stylesheet" type="text/css" media="screen" href="js/3rdparty/jqGrid_5.1.0/css/ui.jqgrid-bootstrap-ui.css" /> -->
+</head>
+<body>
+<table id="uploadGoods"></table>
+<div id="uploadGoodsPager"></div>
+</body>
+<script type="text/javascript" src="js/3rdparty/jqGrid_5.1.0/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="js/3rdparty/jqGrid_5.1.0/js/i18n/grid.locale-cn.js"></script>
+<script type="text/javascript" src="js/3rdparty/jqGrid_5.1.0/js/jquery.jqGrid.min.js"></script>
+<script type="text/javascript">
+
+	var colModel = [ {
+		label : 'Customer ID',
+		name : 'CustomerID',
+		width : 75,
+		key : true,
+		editable : true,
+		editrules : {
+			required : true
+		}
+	}, {
+		label : 'Company Name',
+		name : 'CompanyName',
+		width : 140,
+		editable : true
+	// must set editable to true if you want to make the field editable
+	}, {
+		label : 'Phone',
+		name : 'Phone',
+		width : 100,
+		editable : true
+	}, {
+		label : 'Postal Code',
+		name : 'PostalCode',
+		width : 80,
+		editable : true
+	}, {
+		label : 'City',
+		name : 'City',
+		width : 140,
+		editable : true
+	} ];
+	var options = {
+		//url:'server.php?q=2',
+		datatype : "json",
+		colModel : colModel,
+		rowNum : 10,
+		rowList : [ 10, 20, 30 ],
+		pager : "#uploadGoodsPager",
+		sortname : 'id',
+		loadonce : true,
+		viewrecords : true,
+		sortorder : "desc",
+		caption : "上传商品",
+		editurl : 'clientArray',
+	};
+	$('#uploadGoods').jqGrid(options);
+
+	$('#uploadGoods').navGrid('#uploadGoodsPager',
+	// the buttons to appear on the toolbar of the grid
+	{
+		edit : true,
+		add : true,
+		del : true,
+		search : false,
+		refresh : false,
+		view : false,
+		position : "left",
+		cloneToTop : false
+	},
+	// options for the Edit Dialog
+	{
+		editCaption : "The Edit Dialog",
+		recreateForm : true,
+		checkOnUpdate : true,
+		checkOnSubmit : true,
+		closeAfterEdit : true,
+		errorTextFormat : function(data) {
+			return 'Error: ' + data.responseText
+		}
+	},
+	// options for the Add Dialog
+	{
+		closeAfterAdd : true,
+		recreateForm : true,
+		errorTextFormat : function(data) {
+			return 'Error: ' + data.responseText
+		}
+	},
+	// options for the Delete Dailog
+	{
+		errorTextFormat : function(data) {
+			return 'Error: ' + data.responseText
+		}
+	});
+</script>
+</html>
