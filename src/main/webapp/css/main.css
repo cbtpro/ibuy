@@ -1,0 +1,85 @@
+@CHARSET "UTF-8";
+#rrlogin
+{
+	float:left;
+	background:rgb(235,240,250);
+	border:1px solid rgb(212,212,212);
+}
+#rrlogin #topbg
+{
+	background:#FFF;
+}
+#rrlogin #topbg div
+{
+	background-image:-moz-linear-gradient(top,#FFF,#EBF0FA);/* Firefox */
+	background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#FFF),color-stop(1,#EBF0EA));/*Safari,Chrome  */
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFF',endColorstr='#EBF0FA',GradientType='0');/*IE  */
+    height:15px;
+    width:222px;
+}
+#rrlogin #frm
+{
+	padding:16px;
+	text-align:center;
+}
+#rrlogin #frm label,#rrlogin #frm a
+{
+	font-size:12px;
+	text-decoration:none;
+	margin-top:0;
+}
+#rrlogin #frm .info
+{
+	-ms-border-radius:3px;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	-khtml-border-radius:3px;
+	-o-border-radius:3px;
+	border-radius:3px;
+	border:1px solid rgb(173,183,201);
+	padding:1px 2px 1px 30px;
+	background:#FFF;
+	margin-bottom:15px;
+	background-image:url(../images/img1.png);
+	background-repeat:no-repeat;
+}
+#rrlogin #frm .info input
+{
+	background-image:url(../images/img2.png);
+}
+#rrlogin #frm .info div
+{
+	position:relative;
+	margin:0;
+}
+#rrlogin #frm .info input
+{
+	marign:0;
+	padding:7px 0;
+	width:156px;
+	border:0px;
+	font-size:14px;
+}
+#rrlogin #frm .info label
+{
+	position:absolute;
+	top:9px;
+	left:0px;
+	cursor:text;
+	color:#999;
+	font-size:14px;
+}
+#rrlogin #frm #login,#rrlogin #frm #register
+{
+	background:url(../images/btn1.png);
+	border:none;
+	width:190px;
+	height:38px;
+	margin-top:15px;/* 这里不解 */
+}
+/* #rrlogin #frm #register
+{
+	background:url(../images/btn1.png);
+	background-position:0 -38px;
+	margin-top:0px;
+} */
