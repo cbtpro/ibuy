@@ -1,7 +1,9 @@
 package com.ibuy.www.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.google.gson.Gson;
 import com.ibuy.www.util.ftp.FtpUtils;
 
 @RestController
@@ -25,20 +28,28 @@ public class FileController {
     
 	@RequestMapping(value = "uploadImage", method = RequestMethod.POST)
 	public String uploadImage(@RequestParam MultipartFile[] files, MultipartHttpServletRequest request, HttpServletResponse response) {
-		Iterator<String> itr = request.getFileNames();
-		MultipartFile mpf = request.getFile(itr.next());
 		String fileUri = null;
-		UUID uuid = UUID.randomUUID();
-		String fileName = uuid.toString();
+		List<String> imageList = new ArrayList<>();
+		List<String> imageNameList = new ArrayList<>();
+		Gson gson = new Gson();
 		try {
-			String originalfileName = mpf.getOriginalFilename();
-			String fileNameSuffix = originalfileName.substring(originalfileName.lastIndexOf("."), originalfileName.length());
-			fileUri = FtpUtils.uploadImage(mpf.getInputStream(), fileName + fileNameSuffix);
-			
+			for (Iterator<String> iterator = request.getFileNames(); iterator.hasNext();) {
+				String imageName = (String) iterator.next();
+				MultipartFile mpf = request.getFile(imageName);
+				UUID uuid = UUID.randomUUID();
+				String fileName = uuid.toString();
+				String originalfileName = mpf.getOriginalFilename();
+				String fileNameSuffix = originalfileName.substring(originalfileName.lastIndexOf("."), originalfileName.length());
+				fileUri = FtpUtils.uploadImage(mpf.getInputStream(), fileName + fileNameSuffix);
+				imageList.add(fileUri);
+				imageNameList.add(mpf.getOriginalFilename());
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println(mpf.getOriginalFilename() + " uploaded!");
-		return fileUri;
+		for (int i = 0; i < imageNameList.size(); i++) {
+			System.out.println(imageNameList.get(i) + "uploaded!");
+		}
+		return gson.toJson(imageList);
 	}
 }

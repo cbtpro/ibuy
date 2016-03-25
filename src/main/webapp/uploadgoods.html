@@ -18,7 +18,7 @@
 <script type="text/javascript" src="js/3rdparty/jquery.form/jquery.form.js"></script>
 <script type="text/javascript">
     $('body').delegate('#uploadImage', 'change', function(e) {
-    	var fileList = $('#uploadImage').get(0).files;
+        var fileList = $('#uploadImage').get(0).files;
         if(fileList.length < 1) {
             $('#btnUploadImage').hide();
         } else {
@@ -55,10 +55,14 @@
             },
             success: function(data) {
                 if(data !== null && data !== undefined && data !== '') {
-                    var img = document.createElement('img');
-                    img.src = data;
-                    img.style.height = 'auto';
-                    $('#imagePreview').append(img);
+                    var images = JSON.parse(data);
+                    for (var i = 0; i < images.length; i++) {
+                        var imageUrl = images[i];
+                        var img = document.createElement('img');
+                        img.src = imageUrl;
+                        img.style.height = 'auto';
+                        $('#imagePreview').append(img);
+                    }
                     $('#imagePreviewDiv').show();
                 }
             }
@@ -72,87 +76,87 @@
     uploadEditTemplate += '<div> 备注: </div><div>{goodDesc} </div>';
     uploadEditTemplate += '<hr style="width:100%;"/>';
     uploadEditTemplate += '<div> {sData} {cData}  </div></div>';
-	var colModel = [ {
-		label : 'UUID',
-		name : 'goodUUID',
-		width : 75,
-		key : false,
-		editable : false
-	}, {
-		label : '商品名称',
-		name : 'goodName',
-		width : 140,
-		editable : true
-	// must set editable to true if you want to make the field editable
-	}, {
-		label : '图片',
-		name : 'imageSrc',
-		width : 140,
-		editable : true
-	}, {
-		label : '价格',
-		name : 'goodPrice',
-		width : 100,
-		editable : true
-	}, {
-		label : '备注',
-		name : 'goodDesc',
-		width : 80,
-		editable : true
-	}];
-	var options = {
-		url:'servlet/goodsList',
-		datatype : 'json',
-		colModel : colModel,
-		rowNum : 10,
-		rowList : [ 10, 20, 30 ],
-		pager : '#uploadGoodsPager',
-		sortname : 'goodUUID',
-		loadonce : true,
-		viewrecords : true,
-		sortorder : 'desc',
-		caption : '上传商品',
-		editurl : 'editgoods',
-	};
-	$('#uploadGoods').jqGrid(options);
+    var colModel = [ {
+        label : 'UUID',
+        name : 'goodUUID',
+        width : 75,
+        key : false,
+        editable : false
+    }, {
+        label : '商品名称',
+        name : 'goodName',
+        width : 140,
+        editable : true
+    // must set editable to true if you want to make the field editable
+    }, {
+        label : '图片',
+        name : 'imageSrc',
+        width : 140,
+        editable : true
+    }, {
+        label : '价格',
+        name : 'goodPrice',
+        width : 100,
+        editable : true
+    }, {
+        label : '备注',
+        name : 'goodDesc',
+        width : 80,
+        editable : true
+    }];
+    var options = {
+        url:'servlet/goodsList',
+        datatype : 'json',
+        colModel : colModel,
+        rowNum : 10,
+        rowList : [ 10, 20, 30 ],
+        pager : '#uploadGoodsPager',
+        sortname : 'goodUUID',
+        loadonce : true,
+        viewrecords : true,
+        sortorder : 'desc',
+        caption : '上传商品',
+        editurl : 'editgoods',
+    };
+    $('#uploadGoods').jqGrid(options);
 
-	$('#uploadGoods').navGrid('#uploadGoodsPager',
-	// the buttons to appear on the toolbar of the grid
-	{
-		edit : true,
-		add : true,
-		del : true,
-		search : false,
-		refresh : false,
-		view : false,
-		position : 'left',
-		cloneToTop : false
-	},
-	// options for the Edit Dialog
-	{
-		editCaption : 'The Edit Dialog',
-		recreateForm : true,
-		checkOnUpdate : true,
-		checkOnSubmit : true,
-		closeAfterEdit : true,
-		errorTextFormat : function(data) {
-			return 'Error: ' + data.responseText
-		}
-	},
-	// options for the Add Dialog
-	{
-		closeAfterAdd : true,
-		recreateForm : true,
-		template: uploadEditTemplate,
-		errorTextFormat : function(data) {
-			return 'Error: ' + data.responseText
-		}
-	},
-	// options for the Delete Dailog
-	{
-		errorTextFormat : function(data) {
-			return 'Error: ' + data.responseText
-		}
-	});
+    $('#uploadGoods').navGrid('#uploadGoodsPager',
+    // the buttons to appear on the toolbar of the grid
+    {
+        edit : true,
+        add : true,
+        del : true,
+        search : false,
+        refresh : false,
+        view : false,
+        position : 'left',
+        cloneToTop : false
+    },
+    // options for the Edit Dialog
+    {
+        editCaption : 'The Edit Dialog',
+        recreateForm : true,
+        checkOnUpdate : true,
+        checkOnSubmit : true,
+        closeAfterEdit : true,
+        errorTextFormat : function(data) {
+            return 'Error: ' + data.responseText
+        }
+    },
+    // options for the Add Dialog
+    {
+        closeAfterAdd : true,
+        recreateForm : true,
+        template: uploadEditTemplate,
+        errorTextFormat : function(data) {
+            return 'Error: ' + data.responseText
+        }
+    },
+    // options for the Delete Dailog
+    {
+        errorTextFormat : function(data) {
+            return 'Error: ' + data.responseText
+        }
+    });
 </script>
 </html>

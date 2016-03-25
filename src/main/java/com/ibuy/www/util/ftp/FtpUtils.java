@@ -131,31 +131,30 @@ public class FtpUtils {
 	    } 
 	    return success; 
 	}
-	public static void main(String[] args) throws Exception {
-		FtpUtils ftpUtils = new FtpUtils();
-		// =======上传测试============
-//		String localFile = "/Users/peter/Downloads/20151201191854_ff8fef.jpg";
-//		String url = "www.ouronghui.com";
-//		int port = 21;
-//		String username ="peter";
-//		String password = "peter_@_PETER";
-//		String path ="/mnt/ftp/peter/";
-//		String filename ="20151201191854_ff8fef.jpg";
-//		InputStream input = new FileInputStream(new File(localFile));
-//		ftpUtils.uploadFile(url, port, username, password, path, filename, input);
-		// =======上传测试============
-		
-		// =======下载测试============
-//		String localPath = "/Users/peter/Downloads";
-//		String url = "www.ouronghui.com";
-//		int port = 21;
-//		String username ="peter";
-//		String password ="peter_@_PETER";
-//		String remotePath ="/mnt/ftp/peter/";
-//		String fileName = "9f697f2ac65c10381789a26cb7119313b17e8966.jpg";
-//		ftpUtils.downFile(url, port, username, password, remotePath, fileName, localPath);
-		// =======下载测试============
-		
-	}
-	
+//	public static void main(String[] args) throws Exception {
+//		FtpUtils ftpUtils = new FtpUtils();
+//		// =======上传测试============
+////		String localFile = "/Users/peter/Downloads/20151201191854_ff8fef.jpg";
+////		String url = "www.ouronghui.com";
+////		int port = 21;
+////		String username ="peter";
+////		String password = "peter_@_PETER";
+////		String path ="/mnt/ftp/peter/";
+////		String filename ="20151201191854_ff8fef.jpg";
+////		InputStream input = new FileInputStream(new File(localFile));
+////		ftpUtils.uploadFile(url, port, username, password, path, filename, input);
+//		// =======上传测试============
+//		
+//		// =======下载测试============
+////		String localPath = "/Users/peter/Downloads";
+////		String url = "www.ouronghui.com";
+////		int port = 21;
+////		String username ="peter";
+////		String password ="peter_@_PETER";
+////		String remotePath ="/mnt/ftp/peter/";
+////		String fileName = "9f697f2ac65c10381789a26cb7119313b17e8966.jpg";
+////		ftpUtils.downFile(url, port, username, password, remotePath, fileName, localPath);
+//		// =======下载测试============
+//		
+//	}	
 }
