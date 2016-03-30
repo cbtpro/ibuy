@@ -34,7 +34,7 @@ public class FileController {
 		Gson gson = new Gson();
 		try {
 			for (Iterator<String> iterator = request.getFileNames(); iterator.hasNext();) {
-				String imageName = (String) iterator.next();
+				String imageName = iterator.next();
 				MultipartFile mpf = request.getFile(imageName);
 				UUID uuid = UUID.randomUUID();
 				String fileName = uuid.toString();
