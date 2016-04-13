@@ -2,8 +2,10 @@ package com.ibuy.www.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
@@ -50,6 +52,8 @@ public class FileController {
 		for (int i = 0; i < imageNameList.size(); i++) {
 			System.out.println(imageNameList.get(i) + "uploaded!");
 		}
-		return gson.toJson(imageList);
+		Map<String, List<String>> retMap = new HashMap<>();
+		retMap.put("imageSrc", imageList);
+		return gson.toJson(retMap);
 	}
 }

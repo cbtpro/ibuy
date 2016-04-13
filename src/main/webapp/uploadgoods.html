@@ -7,6 +7,15 @@
 <link rel="stylesheet" type="text/css" media="screen" href="js/3rdparty/jqGrid_5.1.0/css/ui.jqgrid.css" />
 <!-- <link rel="stylesheet" type="text/css" media="screen" href="js/3rdparty/jqGrid_5.1.0/css/ui.jqgrid-bootstrap.css" /> -->
 <!-- <link rel="stylesheet" type="text/css" media="screen" href="js/3rdparty/jqGrid_5.1.0/css/ui.jqgrid-bootstrap-ui.css" /> -->
+<style>
+div#imagePreview img {
+    width: auto;
+    height: 100px;
+}
+#imageSrc {
+    display: none;
+}
+</style>
 </head>
 <body>
 <table id="uploadGoods"></table>
@@ -55,12 +64,15 @@
             },
             success: function(data) {
                 if(data !== null && data !== undefined && data !== '') {
-                    var images = JSON.parse(data);
+                    var retObject = JSON.parse(data);
+                    var images = retObject.imageSrc;
+                    $('#imageSrc').val(images);
                     for (var i = 0; i < images.length; i++) {
                         var imageUrl = images[i];
                         var img = document.createElement('img');
                         img.src = imageUrl;
-                        img.style.height = 'auto';
+                        img.style.height = '100px';
+                        img.style.width = 'auto';
                         $('#imagePreview').append(img);
                     }
                     $('#imagePreviewDiv').show();
@@ -68,13 +80,12 @@
             }
         });
     });
-    var uploadEditTemplate = '<div style="margin-left:15px;"><div> 商品名称 <sup>*</sup>: </div><div>{goodName} </div>';
-    uploadEditTemplate += '<div> 图片: </div><div><input id="uploadImage" type="file" accept="image/png,image/gif,image/jpg" multiple /><input type="button" id="btnUploadImage" value="Upload" style="display:none;" /</div><div style="display:none;">{imageSrc} </div>';
+    var uploadEditTemplate = '<div style="margin-left:15px;height: 1000px;"><div> 商品名称 <sup>*</sup>: </div><div>{goodName} </div>';
+    uploadEditTemplate += '<div> 图片: </div><input id="uploadImage" type="file" accept="image/png,image/gif,image/jpg" multiple /><input type="button" id="btnUploadImage" value="Upload" style="display:none;" /</div><div id="imageSrc" class="imageSrc">{imageSrc} </div>';
     uploadEditTemplate += '<div><div id="progressNumber"></div></div>'
     uploadEditTemplate += '<div id="imagePreviewDiv" style="display:none;"><div> 预览: </div><div><div id="imagePreview"></div></div></div>'
     uploadEditTemplate += '<div> 价格: </div><div>{goodPrice} </div>';
     uploadEditTemplate += '<div> 备注: </div><div>{goodDesc} </div>';
-    uploadEditTemplate += '<hr style="width:100%;"/>';
     uploadEditTemplate += '<div> {sData} {cData}  </div></div>';
     var colModel = [ {
         label : 'UUID',
@@ -116,10 +127,11 @@
         viewrecords : true,
         sortorder : 'desc',
         caption : '上传商品',
-        editurl : 'editgoods',
+        editurl : 'servlet/editgood',
+        width: 1000,
+        height: 600
     };
     $('#uploadGoods').jqGrid(options);
-
     $('#uploadGoods').navGrid('#uploadGoodsPager',
     // the buttons to appear on the toolbar of the grid
     {
@@ -141,7 +153,9 @@
         closeAfterEdit : true,
         errorTextFormat : function(data) {
             return 'Error: ' + data.responseText
-        }
+        },
+        width: 800,
+        height: 600
     },
     // options for the Add Dialog
     {
@@ -150,13 +164,17 @@
         template: uploadEditTemplate,
         errorTextFormat : function(data) {
             return 'Error: ' + data.responseText
-        }
+        },
+        width: 800,
+        height: 600
     },
     // options for the Delete Dailog
     {
         errorTextFormat : function(data) {
             return 'Error: ' + data.responseText
-        }
+        },
+        width: 800,
+        height: 600
     });
 </script>
 </html>
