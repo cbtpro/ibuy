@@ -1,5 +1,7 @@
 package com.ibuy.www.services.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -68,6 +70,11 @@ public class GoodsServicesImpl implements IGoodsServices {
         goodImage.setGoodImagesUUID(newImage.getGoodImagesUUID());
         IGoodImages newGoodImage = goodImageRepository.save(goodImage);
 		return newGoodImage==null?false:true;
+	}
+
+	@Override
+	public List<Object> findAllGoods() {
+		return goodsRepository.findAllGoods();
 	}
 
 }

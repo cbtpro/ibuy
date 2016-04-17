@@ -8,10 +8,11 @@
 <!-- <link rel="stylesheet" type="text/css" media="screen" href="js/3rdparty/jqGrid_5.1.0/css/ui.jqgrid-bootstrap.css" /> -->
 <!-- <link rel="stylesheet" type="text/css" media="screen" href="js/3rdparty/jqGrid_5.1.0/css/ui.jqgrid-bootstrap-ui.css" /> -->
 <style>
-div#imagePreview img {
+div#imagePreview img, .imagesList {
     width: auto;
     height: 100px;
 }
+
 #imageSrc {
     display: none;
 }
@@ -103,7 +104,8 @@ div#imagePreview img {
         label : '图片',
         name : 'imageSrc',
         width : 140,
-        editable : true
+        editable : true,
+        formatter : imagesFormatter
     }, {
         label : '价格',
         name : 'goodPrice',
@@ -116,7 +118,8 @@ div#imagePreview img {
         editable : true
     }];
     var options = {
-        url:'servlet/goodsList',
+        //url:'servlet/goodsList',
+        url: 'servlet/findAllGoods',
         datatype : 'json',
         colModel : colModel,
         rowNum : 10,
@@ -176,5 +179,16 @@ div#imagePreview img {
         width: 800,
         height: 600
     });
+    function imagesFormatter(cellvalue, options, rowdata) {
+        var imagesElement = '';
+        if (cellvalue) {
+            var imgs = cellvalue.split(',');
+            for (var imgIndex in imgs) {
+                var imageSrc = imgs[imgIndex];
+                imagesElement += '<img class="imagesList" src="' + imageSrc + '" alt="' + imageSrc + '" />';
+            }
+        }
+        return imagesElement;
+    };
 </script>
 </html>

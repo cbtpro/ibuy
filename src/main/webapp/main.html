@@ -137,6 +137,15 @@
 			    right: 10px;
     			bottom: 20px;
 			}
+			.price {
+				color: #e4393c;
+				font-size: 20px;
+				float: left;
+				margin-left: 10px;
+			}
+			.good-name {
+			    color: 
+			}
 		</style>
 	</head>
 
@@ -148,115 +157,16 @@
 		<div class="mui-content">
 			<div class="mui-content-padded">
 				<div id="wrap">
-
-					<div class="box">
-						<div class="info">
-							<div class="pic">
-								<img name="good1" src="images/1.jpg">
-							</div>
-							<div class="title">
-								<a href="http://www.sucaijiayuan.com">￥123</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="box">
-						<div class="info">
-							<div class="pic">
-								<img src="images/2.jpg">
-							</div>
-							<div class="title">
-								<a href="http://www.sucaijiayuan.com">￥123</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="box">
-						<div class="info">
-							<div class="pic">
-								<img src="images/3.jpg">
-							</div>
-							<div class="title">
-								<a href="http://www.sucaijiayuan.com">￥123</a>
-							</div>
-						</div>
-					</div>
-					<div class="box">
-						<div class="info">
-							<div class="pic">
-								<img src="images/4.jpg">
-							</div>
-							<div class="title">
-								<a href="http://www.sucaijiayuan.com">￥123</a>
-							</div>
-						</div>
-					</div>
-					<div class="box">
-						<div class="info">
-							<div class="pic">
-								<img src="images/5.jpg">
-							</div>
-							<div class="title">
-								<a href="http://www.sucaijiayuan.com">￥123</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="box">
-						<div class="info">
-							<div class="pic">
-								<img src="images/6.jpg">
-							</div>
-							<div class="title">
-								<a href="http://www.sucaijiayuan.com">￥123</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="box">
-						<div class="info">
-							<div class="pic">
-								<img src="images/7.jpg">
-							</div>
-							<div class="title">
-								<a href="http://www.sucaijiayuan.com">￥123</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="box">
-						<div class="info">
-							<div class="pic">
-								<img src="images/8.jpg">
-							</div>
-							<div class="title">
-								<a href="http://www.sucaijiayuan.com">￥123</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="box">
-						<div class="info">
-							<div class="pic">
-								<img src="images/9.jpg">
-							</div>
-							<div class="title">
-								<a href="http://www.sucaijiayuan.com">￥123</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="box">
-						<div class="info">
-							<div class="pic">
-								<img src="images/10.jpg">
-							</div>
-							<div class="title">
-								<a href="http://www.sucaijiayuan.com">￥123</a>
-							</div>
-						</div>
-					</div>
-
+                    <div class="box" style="display:none;">
+                        <div class="info">
+                            <div class="pic">
+                                <img name="good1" src="images/1.jpg">
+                            </div>
+                            <div class="title">
+                                <a href="http://www.sucaijiayuan.com">￥123</a>
+                            </div>
+                        </div>
+                    </div>
 				</div>
 				<span id="go_top" class="go_top"><a onclick="javascript:void(0);" href="javascript:scroll(0,0)">回到顶部</a></span>
 			</div>
@@ -266,75 +176,17 @@
 			window.onload = function() {
 				//运行瀑布流主函数
 				PBL('wrap', 'box');
-				//模拟数据
-				var data = [ {
-					'src' : '1.jpg',
-					'title' : '￥123'
-				}, {
-					'src' : '2.jpg',
-					'title' : '￥123'
-				}, {
-					'src' : '3.jpg',
-					'title' : '￥123'
-				}, {
-					'src' : '4.jpg',
-					'title' : '￥123'
-				}, {
-					'src' : '5.jpg',
-					'title' : '￥123'
-				}, {
-					'src' : '6.jpg',
-					'title' : '￥123'
-				}, {
-					'src' : '7.jpg',
-					'title' : '￥123'
-				}, {
-					'src' : '8.jpg',
-					'title' : '￥123'
-				}, {
-					'src' : '9.jpg',
-					'title' : '￥123'
-				}, {
-					'src' : '10.jpg',
-					'title' : '￥123'
-				} ];
-	
+				firstFall();
 				//设置滚动加载
 				window.onscroll = function() {
 					//校验数据请求
 					if (getCheck()) {
-						var wrap = document.getElementById('wrap');
-						for (i in data) {
-							//创建box
-							var box = document.createElement('div');
-							box.className = 'box';
-							wrap.appendChild(box);
-							//创建info
-							var info = document.createElement('div');
-							info.className = 'info';
-							box.appendChild(info);
-							//创建pic
-							var pic = document.createElement('div');
-							pic.className = 'pic';
-							info.appendChild(pic);
-							//创建img
-							var img = document.createElement('img');
-							img.src = 'images/' + data[i].src;
-							img.style.height = 'auto';
-							pic.appendChild(img);
-							//创建title
-							var title = document.createElement('div');
-							title.className = 'title';
-							info.appendChild(title);
-							//创建a标记
-							var a = document.createElement('a');
-							a.innerHTML = data[i].title;
-							title.appendChild(a);
-						}
-						PBL('wrap', 'box');
+						$.when(fallQueryGoods())
+						.done(nextFall);
 					}
 				}
 			}
+			
 			/**
 			 * 瀑布流主函数
 			 * @param  wrap	[Str] 外层元素的ID
@@ -346,8 +198,7 @@
 				var boxs = getClass(wrap, box);
 				//	2.获得屏幕可显示的列数
 				var boxW = boxs[0].offsetWidth;
-				var colsNum = Math.floor(document.documentElement.clientWidth
-						/ boxW);
+				var colsNum = Math.floor(document.documentElement.clientWidth / boxW);
 				wrap.style.width = boxW * colsNum + 'px';//为外层赋值宽度
 				//	3.循环出所有的box并按照瀑布流排列
 				var everyH = [];//定义一个数组存储每一列的高度
@@ -427,6 +278,75 @@
 					"opacity" : "1"
 				}, 999);
 				getStartNum = index;//更新请求数据的条数位置
+			}
+			function fallQueryGoods() {
+				var dtd = $.Deferred(); // 新建一个deferred对象
+				$.ajax({
+					url : 'servlet/fallQueryGoods',
+					method: "get",
+					data: {_search: '', nd: 0, rows: 10, page: 1, sidx: 1, sord: 'asc'},
+					success: function(msg) {
+						var goodList = [];
+						var goods = msg.rows;
+						for ( var goodIndex in goods) {
+							var good = goods[goodIndex];
+							var goodUUID = good[0];
+							var goodName = good[1];
+							var goodImageUrl = good[2];
+							var goodPrice = good[3];
+							var goodDesc = good[4];
+							goodList.push({
+								goodUUID: goodUUID,
+								name: goodPrice,
+								title: goodName,
+								src: goodImageUrl,
+								price: goodPrice
+							});
+						}
+						dtd.resolve(goodList); // 改变deferred对象的执行状态
+					}
+				});
+				return dtd;
+			}
+			function nextFall(data) {
+                var wrap = document.getElementById('wrap');
+                for (i in data) {
+                    //创建box
+                    var box = document.createElement('div');
+                    box.className = 'box';
+                    wrap.appendChild(box);
+                    //创建info
+                    var info = document.createElement('div');
+                    info.className = 'info';
+                    box.appendChild(info);
+                    //创建链接
+                    var detail = document.createElement('a');
+                    detail.href = 'servlet/toGoodDetail?goodUUID=' + data[i].goodUUID + '&_' + new Date().getTime();
+                    info.appendChild(detail);
+                    //创建pic
+                    var pic = document.createElement('div');
+                    pic.className = 'pic';
+                    detail.appendChild(pic);
+                    //创建img
+                    var img = document.createElement('img');
+                    img.src = data[i].src;
+                    img.style.height = 'auto';
+                    pic.appendChild(img);
+                    //创建title
+                    var title = document.createElement('div');
+                    title.className = 'title';
+                    info.appendChild(title);
+                    //创建a标记
+                    var a = document.createElement('a');
+                    a.innerHTML = '<div><strong class="price"><em>¥</em>' + data[i].price + '</strong></div><div><em>' + data[i].title + '</em></div>';
+                    title.appendChild(a);
+                }
+                PBL('wrap', 'box');
+			}
+			function firstFall() {
+				var contentGoodsFall = document.getElementsByClassName('mui-content-padded');
+                $.when(fallQueryGoods())
+                .done(nextFall);
 			}
 		</script>
 	</body>

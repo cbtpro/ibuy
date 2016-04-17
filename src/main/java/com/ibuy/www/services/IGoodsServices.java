@@ -1,5 +1,7 @@
 package com.ibuy.www.services;
 
+import java.util.List;
+
 import org.springframework.data.domain.Pageable;
 
 import com.ibuy.www.domain.IGoods;
@@ -10,6 +12,7 @@ public interface IGoodsServices {
     void delete(IGoods goods);
     void update(IGoods goods);
     IGoods findById(String id);
+    List<Object> findAllGoods();
     Iterable<IGoods> findAll();
     Iterable<IGoods> findAll(Pageable pageable);
     boolean saveGoods(IGoods goods, IImages images);
